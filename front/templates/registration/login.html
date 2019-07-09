@@ -1,0 +1,16 @@
+<!-- templates/registration/login.html -->
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+
+<br>
+<center>
+    <h2>Login</h2>
+    <form method="post" style="width: 50%;">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+          <button type="submit" class="btn btn-primary">Se connecter</button>
+      {% endbuttons %}
+    </form>
+</center>
