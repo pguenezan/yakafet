@@ -17,7 +17,8 @@ class IndexView(TemplateView):
                     e = models.Entry(user=request.user, fet=fet)
                     e.save()
                     break
-        context['last'] = models.Entry.objects.filter(user=request.user).order_by('-time').first()
+        if request.user.is_authenticated():
+            context['last'] = models.Entry.objects.filter(user=request.user).order_by('-time').first()
         return render(request, self.template_name, context)
 
 
