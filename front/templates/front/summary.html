@@ -21,6 +21,7 @@
                 <table class="table" style="width: 50%; text-align: center;">
                     <thead class="thead-light">
                         <tr>
+                            <th scope="col">Prénom</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Plat</th>
                         </tr>
@@ -28,7 +29,8 @@
                     <tbody>
                         {% for entry in summary %}
                             <tr>
-                                <th scope="row">{{ entry.user }}</th>
+                                <th scope="row">{{ entry.user.first_name }}</th>
+                                <th scope="row">{{ entry.user.last_name }}</th>
                                 <td>{{ entry.fet }}</td>
                             </tr>
                         {% endfor %}
