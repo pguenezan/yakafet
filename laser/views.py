@@ -11,7 +11,7 @@ class IndexView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         if 'name' in request.GET:
-            e = models.EntryLaser(user=request.user, fet=request.GET['name'])
+            e = models.EntryLaser(user=request.user, fet=request.GET['name'], navigo=('navigo' in request.GET))
             e.save()
         if request.user.is_authenticated:
             context['last'] = models.EntryLaser.objects.filter(user=request.user).order_by('-time').first()

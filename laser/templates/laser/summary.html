@@ -24,6 +24,7 @@
                             <th scope="col">Prénom</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Pseudonym</th>
+                            <th scope="col">Navigo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +33,7 @@
                                 <th scope="row">{{ entry.user.first_name }}</th>
                                 <th scope="row">{{ entry.user.last_name }}</th>
                                 <td>{{ entry.fet }}</td>
+                                <td>{{ entry.navigo }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
