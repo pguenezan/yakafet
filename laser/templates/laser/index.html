@@ -1,0 +1,41 @@
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+<html>
+    <head>
+        <title>YakaFet</title>
+        <style>
+            h1 {
+                text-align: center;
+            }
+        </style>
+    <head>
+    <body>
+        <br>
+        <h1>YakaFet</h1>
+        {% if user.is_authenticated %}
+            <center>
+                {% if last %}
+                    <br>
+                    <div class="alert alert-primary" role="alert" style="text-align: center;">
+                        Tu as choisi : "{{ last.fet }}"
+                    </div>
+                    <br>
+                {% endif %}
+                <form style="width: 50%;" action="" method="get">
+                    <div class="form-group">
+                        <label for="name">Pseudonym</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="_">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Confirm</button>
+                </form>
+            </center>
+        {% else %}
+            <center>
+                <a href="/accounts/login" class="btn btn-primary">Se connecter</a>
+            </center>
+        {% endif %}
+    </body>
+</html>
