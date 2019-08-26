@@ -28,7 +28,11 @@
                     </thead>
                     <tbody>
                         {% for entry in summary %}
-                            <tr>
+                            {% if entry.fet.provider %}
+                                <tr style="background-color: {{ entry.fet.provider.color }};">
+                            {% else %}
+                                <tr>
+                            {% endif %}
                                 <th scope="row">{{ entry.user.first_name }}</th>
                                 <th scope="row">{{ entry.user.last_name }}</th>
                                 <td>{{ entry.fet }}</td>
@@ -53,6 +57,12 @@
                         {% endfor %}
                     </tbody>
                 </table>
+            </center>
+            <br>
+            <br>
+            <center>
+                <h3>Nombre d'organisateurs : {{ no }}</h3>
+                <h3>Nombre de participantes : {{ nc }}</h3>
             </center>
         {% endif %}
     </body>

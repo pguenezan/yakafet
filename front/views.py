@@ -29,6 +29,8 @@ class SummaryView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['summary'] = []
         context['number'] = {}
+        context['no'] = 0
+        context['nc'] = 0
         for user in models.Entry.objects.values('user').distinct():
             e = models.Entry.objects.filter(user=user['user']).order_by('-time').first()
             context['summary'].append(e)
@@ -36,4 +38,8 @@ class SummaryView(TemplateView):
                 context['number'][e.fet] += 1
             else:
                 context['number'][e.fet] = 1
+            if e.user.is_staff:
+                context['no'] += 1
+            else:
+                context['nc'] += 1
         return render(request, self.template_name, context)

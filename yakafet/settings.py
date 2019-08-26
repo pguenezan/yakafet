@@ -25,7 +25,7 @@ SECRET_KEY = 'nl6c6ax%)p6wl)sq0bj7rxew90x^@u&js9&bcf5&4!+3)gey@5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['167.114.225.36', 'yakafet.bfor.fr', '127.0.0.1']
 
 
 # Application definition
