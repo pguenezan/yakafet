@@ -14,11 +14,20 @@ class IndexView(TemplateView):
         if 'plat' in request.GET:
             for fet in context['fets']:
                 if slugify(str(fet)) == request.GET['plat']:
-                    e = models.Entry(user=request.user, fet=fet)
+                    e = models.Entry(user=request.user, fet=fet, eround=models.Round.objects.first())
                     e.save()
                     break
         if request.user.is_authenticated:
-            context['last'] = models.Entry.objects.filter(user=request.user).order_by('-time').first()
+            context['last'] = models.Entry.objects.filter(user=request.user, eround=models.Round.objects.first()).order_by('-time').first()
+        return render(request, self.template_name, context)
+
+
+class SummaryChooserView(TemplateView):
+    template_name = 'front/summary_chooser.html'
+
+    def get(self, request, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['rounds'] = models.Round.objects.all()
         return render(request, self.template_name, context)
 
 
@@ -31,7 +40,7 @@ class SummaryView(TemplateView):
         context['number'] = {}
         context['no'] = 0
         context['nc'] = 0
-        for user in models.Entry.objects.values('user').distinct():
+        for user in models.Entry.objects.filter(eround=models.Round.objects.get(id=kwargs['round'])).values('user').distinct():
             e = models.Entry.objects.filter(user=user['user']).order_by('-time').first()
             context['summary'].append(e)
             if e.fet in context['number']:

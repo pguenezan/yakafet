@@ -19,10 +19,21 @@ class Provider(models.Model):
         return self.name
 
 
+class Round(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.date.strftime("%d/%d/%Y, %H:%M")
+
+    class Meta:
+        ordering = ['-date']
+
+
 class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     fet = models.ForeignKey(Fet, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
+    eround = models.ForeignKey(Round, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.user) + ': ' + str(self.fet)
