@@ -28,11 +28,7 @@
                     </thead>
                     <tbody>
                         {% for entry in summary %}
-                            {% if entry.fet.provider %}
-                                <tr style="background-color: {{ entry.fet.provider.color }};">
-                            {% else %}
-                                <tr>
-                            {% endif %}
+                            <tr style="background-color: {{ entry.fet.provider.color }};">
                                 <th scope="row">{{ entry.user.first_name }}</th>
                                 <th scope="row">{{ entry.user.last_name }}</th>
                                 <td>{{ entry.fet }}</td>
@@ -49,8 +45,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for fet, n in number.items %}
-                            <tr>
+                        {% for fet, n in number %}
+                            <tr style="background-color: {{ fet.provider.color }};">
                                 <th scope="row">{{ fet }}</th>
                                 <td>{{ n }}</td>
                             </tr>

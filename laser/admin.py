@@ -1,3 +1,9 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+class LaserEntryAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(models.EntryLaser, LaserEntryAdmin)
+

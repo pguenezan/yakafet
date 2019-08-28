@@ -29,9 +29,18 @@
                     </thead>
                     <tbody>
                         {% for entry in summary %}
-                            <tr>
-                                <th scope="row">{{ entry.user.first_name }}</th>
-                                <th scope="row">{{ entry.user.last_name }}</th>
+                            {% if entry.user.is_staff %}
+                                <tr style="background-color: #ecf9f2;">
+                            {% else %}
+                                <tr>
+                            {% endif %}
+                                {% if entry.user.is_staff %}
+                                    <th scope="row" style="color: green;">{{ entry.user.first_name }}</th>
+                                    <th scope="row" style="color: green;">{{ entry.user.last_name }}</th>
+                                {% else %}
+                                    <th scope="row">{{ entry.user.first_name }}</th>
+                                    <th scope="row">{{ entry.user.last_name }}</th>
+                                {% endif %}
                                 <td>{{ entry.fet }}</td>
                                 <td>{{ entry.navigo }}</td>
                             </tr>

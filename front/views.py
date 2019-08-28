@@ -10,7 +10,7 @@ class IndexView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['fets'] = models.Fet.objects.all()
+        context['fets'] = models.Fet.objects.filter(provider__enable=True)
         if 'plat' in request.GET:
             for fet in context['fets']:
                 if slugify(str(fet)) == request.GET['plat']:
@@ -42,4 +42,5 @@ class SummaryView(TemplateView):
                 context['no'] += 1
             else:
                 context['nc'] += 1
+        context['number'] = sorted(context['number'].items(), key=lambda e: e[0].provider.name)
         return render(request, self.template_name, context)
