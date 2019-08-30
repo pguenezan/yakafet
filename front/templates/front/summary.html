@@ -28,11 +28,35 @@
                     </thead>
                     <tbody>
                         {% for entry in summary %}
-                            <tr style="background-color: {{ entry.fet.provider.color }};">
-                                <th scope="row">{{ entry.user.first_name }}</th>
-                                <th scope="row">{{ entry.user.last_name }}</th>
-                                <td>{{ entry.fet }}</td>
-                            </tr>
+                            {% if not entry.user.is_staff %}
+                                <tr style="background-color: {{ entry.fet.provider.color }};">
+                                    <th scope="row">{{ entry.user.first_name }}</th>
+                                    <th scope="row">{{ entry.user.last_name }}</th>
+                                    <td>{{ entry.fet }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <table class="table" style="width: 50%; text-align: center;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Plat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in summary %}
+                            {% if entry.user.is_staff %}
+                                <tr style="background-color: {{ entry.fet.provider.color }};">
+                                    <th scope="row">{{ entry.user.first_name }}</th>
+                                    <th scope="row">{{ entry.user.last_name }}</th>
+                                    <td>{{ entry.fet }}</td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
