@@ -35,6 +35,11 @@
                   </div>
                 </div>
             </center>
+            {% if user.is_superuser %}
+                <center>
+                    <a href="/summary" class="btn btn-primary">Summary</a>
+                </center>
+            {% endif %}
         {% else %}
             <center>
                 <a href="/accounts/login" class="btn btn-primary">Se connecter</a>
