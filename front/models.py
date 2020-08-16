@@ -23,7 +23,7 @@ class Round(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.date.strftime("%d/%d/%Y, %H:%M")
+        return self.date.strftime("%d/%m/%Y, %H:%M")
 
     class Meta:
         ordering = ['-date']
