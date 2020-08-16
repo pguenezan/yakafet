@@ -13,7 +13,7 @@ class EntryAdmin(admin.ModelAdmin):
 
 
 class ProviderAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'enable')
 
 
 class RoundAdmin(admin.ModelAdmin):
